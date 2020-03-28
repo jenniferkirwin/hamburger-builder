@@ -1,40 +1,30 @@
-@import url("https://fonts.googleapis.com/css?family=Bitter:400,700|Hind|Source+Serif+Pro&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins|Titan+One&display=swap");
 body {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  font-family: "Source Serif Pro", serif;
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Titan One", cursive;
 }
 
 main {
   flex: 1 0 auto;
 }
 
-header, main, footer {
-  padding-left: 300px;
-}
-
-@media only screen and (max-width: 992px) {
-  header, main, footer {
-    padding-left: 0;
-  }
-}
 .my-nav {
-  background-color: #DD5C11;
-  padding: 15px 5px;
-  font-family: "Bitter", serif;
+  background-color: #DE1A1A;
+  font-family: "Titan One", cursive;
   font-size: 26px;
-  font-weight: bold;
   color: #ffffff;
-}
-.my-nav i {
-  margin-right: 7px;
 }
 
 .btn {
   font-weight: bold;
-  font-family: "Bitter", serif;
+  font-family: "Poppins", sans-serif;
 }
 
 footer, .page-footer {
@@ -52,6 +42,10 @@ footer, .page-footer {
 [contenteditable]:focus {
   background: #efefef;
   outline: 2px solid #e6e6e6;
+}
+
+td {
+  padding: 15px;
 }
 
 /*# sourceMappingURL=style.css.map */

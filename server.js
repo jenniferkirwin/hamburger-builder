@@ -4,16 +4,31 @@
 const express = require("express");
 const exphbs = require("express-handlebars");
 
-const hamburger = [
-  {
-    hamburger_name: "Hamburger 1",
-    eaten: true
-  },
-  {
-    hamburger_name: "Hamburger 2",
-    eaten: true
-  }
-]
+// const hamburger = [
+//   {
+//     hamburger_name: "Hamburger 1",
+//     eaten: true
+//   }
+//   // {
+//   //   hamburger_name: "Hamburger 2",
+//   //   eaten: true
+//   // }
+// ]
+
+const hamburgers = {
+  hamburger: [
+    {
+      id: 1,
+      hamburger_name: "Hamburger 1",
+      eaten: true
+    },
+    {
+      id: 2,
+      hamburger_name: "Hamburger 2",
+      eaten: false
+    }
+  ]
+}
 
 // Express App
 // =============================================================
@@ -41,7 +56,7 @@ app.get("/", function(req, res) {
 
   //   res.render("index", { plans: data });
   // });
-  res.render("index", {hamburger});
+  res.render("index", hamburgers);
 });
 
 // Starts the server to begin listening

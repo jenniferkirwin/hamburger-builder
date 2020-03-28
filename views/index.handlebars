@@ -1,32 +1,73 @@
-<header>
-  <ul id="slide-out" class="sidenav sidenav-fixed">
-    <li><a class="subheader">Saved Notes</a></li>
-    <li><div class="divider"></div></li>       
-    <li>
-      <ul class="all-notes"></ul>
-    </li>
-  </ul>
-  
-</header>
 <main>
-  <div class="row my-nav">
+    <div class="row">
     <div class="col s12">
-      <span class="left"><i class="material-icons">edit</i>Note Taker</span>
-      <a href="#" data-target="slide-out" class="sidenav-trigger right hide-on-large-only"><i class="material-icons">menu</i></a>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col s12">
-      <div class="note-div" data-active="null">
-        <h2 contenteditable="true" class="note-title" data-placeholder="New Note Title"></h2>
-        <p contenteditable="true" class="note-content" data-placeholder="New Note Content"></p>
-          {{#each hamburger }}
-              <p>Hamburger Name: {{hamburger_name}}</p>
-              <p>Eaten: {{eaten}}</p>
-              <hr>
-          {{/each}}
+      <div>
+        <h2>Build a Burger</h2>
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="ex. Cheese Burger" id="burger_name" type="text" class="validate">
+              <label for="first_name">Burger Name</label>
+            </div>
+            <div class="input-field col s6">
+              <button class="waves-effect waves-light btn" type="button">Build Your Burger</button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
-  </div>  
+  </div> 
+  <div class="row">
+    <div class="col s12 m6">
+      <div>
+        <h2>Eat a Burger</h2>
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Burger Name</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each hamburger }}
+            {{#unless eaten}}
+              <tr>
+                  <td>{{hamburger_name}}</td>
+                  <td class="right-align">
+                    <a class="waves-effect waves-light btn" data-id="{{id}}">Eat!</a>
+                  </td>
+              </tr>            
+            {{/unless}}
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col s12 m6">
+      <div>
+        <h2>Eaten Burgers</h2>
+        <table class="striped">
+          <thead>
+            <tr>
+                <th>Burger Name</th>
+                <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          {{#each hamburger }}
+            {{#if eaten}}
+              <tr>
+                  <td>{{hamburger_name}}</td>
+                  <td class="right-align">
+                    <a class="waves-effect waves-light btn disabled" data-id="{{id}}">Eaten</a>
+                  </td>
+              </tr>            
+            {{/if}}
+          {{/each}}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>   
 </main>
 

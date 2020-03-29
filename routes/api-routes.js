@@ -15,47 +15,59 @@ const db = require("../models");
 // Create new burger
 router.post("/burgers", function(req, res) {
 
-  db.Burger.create({
-    name: req.body.name,
-    eaten: false
-  })
-  .then(function(dbBurger) {
+    db.Burger.create({
+        name: req.body.name,
+        eaten: false
+    })
+    .then(function(dbBurger) {
 
-    res.json(dbBurger);
+        res.json(dbBurger);
 
-  });
+    }).catch(function(error) {
+
+        console.error(error);
+    
+    });
 
 });
 
-router.put("/burgers", function(req, res) {
+router.put("/burgers/:id", function(req, res) {
     db.Burger.update(
         {
             eaten: true
         },
         {
             where: {
-                id: req.body.id
+                id: req.params.id
             }
         }
-    ).then(function(dbBurger) {
+    ).then(function() {
 
-        res.json(dbBurger);
+        res.sendStatus(200);
     
-      });
+    }).catch(function(error) {
+
+        console.error(error);
+
+    });
 });
 
-router.delete("/burgers", function(req, res) {
+router.delete("/burgers/:id", function(req, res) {
     db.Burger.destroy(
         {
             where: {
-                id: req.body.id
+                id: req.params.id
             }
         }
     ).then(function(dbBurger) {
 
-        res.json(dbBurger);
+        res.sendStatus(200);
     
-      });
+    }).catch(function(error) {
+
+        console.error(error);
+
+    });
 });
 
 

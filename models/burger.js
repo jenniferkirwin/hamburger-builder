@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     eaten: {
-      type: DataTypes.TEXT,
+      type: DataTypes.BOOLEAN,
       defaultValue: false
     }
   });

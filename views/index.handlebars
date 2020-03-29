@@ -6,11 +6,11 @@
         <form class="col s12">
           <div class="row">
             <div class="input-field col s6">
-              <input placeholder="ex. Cheese Burger" id="burger_name" type="text" class="validate">
-              <label for="first_name">Burger Name</label>
+              <input placeholder="ex. Cheese Burger" id="burger_name" type="text">
+              <label for="burger_name">Burger Name</label>
             </div>
             <div class="input-field col s6">
-              <button class="waves-effect waves-light btn" type="button">Build Your Burger</button>
+              <button class="waves-effect waves-light btn btn-submit" type="submit">Build Your Burger</button>
             </div>
           </div>
         </form>
@@ -28,7 +28,7 @@
                 <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="uneaten-burger">
           {{#each hamburger}}
 
             
@@ -36,7 +36,7 @@
               <tr>
                   <td>{{name}}</td>
                   <td class="right-align">
-                    <a class="waves-effect waves-light btn" data-id="{{id}}">Eat!</a>
+                    <a class="waves-effect waves-light btn btn-eat" data-id="{{id}}" data-name="{{name}}" data-eaten="{{eaten}}">Eat!</a>
                   </td>
               </tr>            
             {{/unless}}
@@ -55,13 +55,13 @@
                 <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody class="eaten-burger">
           {{#each hamburger}}
             {{#if eaten}}
               <tr>
                   <td>{{name}}</td>
                   <td class="right-align">
-                    <a class="waves-effect waves-light btn disabled" data-id="{{id}}">Eaten</a>
+                    <a class="waves-effect waves-light btn btn-delete" data-id="{{id}}" data-name="{{name}}" data-eaten="{{eaten}}">Delete</a>
                   </td>
               </tr>            
             {{/if}}

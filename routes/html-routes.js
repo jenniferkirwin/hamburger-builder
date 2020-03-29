@@ -16,7 +16,8 @@ router.get("/", function(req, res) {
 
   db.Burger.findAll({
     attributes: ["id", "name", "eaten"],
-    raw: true
+    raw: true,
+    order: [['updatedAt', 'DESC']]
   })
   .then(function(dbBurger) {
 

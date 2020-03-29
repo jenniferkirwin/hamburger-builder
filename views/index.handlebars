@@ -29,10 +29,12 @@
             </tr>
           </thead>
           <tbody>
-          {{#each hamburger }}
+          {{#each hamburger}}
+
+            
             {{#unless eaten}}
               <tr>
-                  <td>{{hamburger_name}}</td>
+                  <td>{{name}}</td>
                   <td class="right-align">
                     <a class="waves-effect waves-light btn" data-id="{{id}}">Eat!</a>
                   </td>
@@ -54,10 +56,10 @@
             </tr>
           </thead>
           <tbody>
-          {{#each hamburger }}
+          {{#each hamburger}}
             {{#if eaten}}
               <tr>
-                  <td>{{hamburger_name}}</td>
+                  <td>{{name}}</td>
                   <td class="right-align">
                     <a class="waves-effect waves-light btn disabled" data-id="{{id}}">Eaten</a>
                   </td>

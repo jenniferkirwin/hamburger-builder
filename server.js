@@ -1,66 +1,92 @@
-// ===========================================================================
 // Dependencies
-// ===========================================================================
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
 const express = require("express");
 const exphbs = require("express-handlebars");
 
-// const hamburger = [
-//   {
-//     hamburger_name: "Hamburger 1",
-//     eaten: true
-//   }
-//   // {
-//   //   hamburger_name: "Hamburger 2",
-//   //   eaten: true
-//   // }
-// ]
-
-const hamburgers = {
-  hamburger: [
-    {
-      id: 1,
-      hamburger_name: "Hamburger 1",
-      eaten: true
-    },
-    {
-      id: 2,
-      hamburger_name: "Hamburger 2",
-      eaten: false
-    }
-  ]
-}
 
 // Express App
-// =============================================================
 const app = express();
 const PORT = process.env.PORT || 8080;
+
+// Getting sequelize for database
+const db = require("./models");
 
 // Express Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Static directory
-app.use(express.static("app/public"));
+// Using static directory
+app.use(express.static("public"));
 
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-// Routes
-// =============================================================
-app.get("/", function(req, res) {
-  // connection.query("SELECT * FROM plans;", function(err, data) {
-  //   if (err) {
-  //     return res.status(500).end();
-  //   }
 
-  //   res.render("index", { plans: data });
-  // });
-  res.render("index", hamburgers);
+// Test Code
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// const hamburgers = {
+//   hamburger: [
+//     {
+//       id: 1,
+//       hamburger_name: "Hamburger 1",
+//       eaten: true
+//     },
+//     {
+//       id: 2,
+//       hamburger_name: "Hamburger 2",
+//       eaten: false
+//     }
+//   ]
+// }
+
+
+
+
+// Routes
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+app.get("/", function(req, res) {
+
+  db.Burger.findAll({
+    attributes: ["id", "name", "eaten"],
+    raw: true
+  })
+  .then(function(dbBurger) {
+
+    const hamburgers = {
+      hamburger: dbBurger
+    }
+    console.log(hamburgers);
+    
+    res.render("index", hamburgers);
+  });
+
 });
 
-// Starts the server to begin listening
-// =============================================================
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
+// Connects to database and starts the server
+// ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+db.sequelize.sync({ force: true }).then(function() {
+  app.listen(PORT, function() {
+    console.log("App listening on PORT " + PORT);
+  });
+
+  db.Burger.create({
+    name: "Burger 1",
+    eaten: false
+  });
+  
+  db.Burger.create({
+    name: "Burger 2",
+    eaten: false
+  });
+  
+  db.Burger.create({
+    name: "Burger 3",
+    eaten: true
+  });
+
 });

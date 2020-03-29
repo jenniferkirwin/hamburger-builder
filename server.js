@@ -1,9 +1,13 @@
 // Dependencies
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
+
 const express = require("express");
 const exphbs = require("express-handlebars");
 
+// For Express Routes
+const basehtml = require("./routes/html-routes");
+const apiroutes = require("./routes/api-routes");
 
 // Express App
 const app = express();
@@ -16,57 +20,21 @@ const db = require("./models");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Using static directory
+// Using static directory in HTML
 app.use(express.static("public"));
 
 // Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
-
-// Test Code
-// ---------------------------------------------------------------------------
-// ---------------------------------------------------------------------------
-// const hamburgers = {
-//   hamburger: [
-//     {
-//       id: 1,
-//       hamburger_name: "Hamburger 1",
-//       eaten: true
-//     },
-//     {
-//       id: 2,
-//       hamburger_name: "Hamburger 2",
-//       eaten: false
-//     }
-//   ]
-// }
-
-
-
-
 // Routes
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-app.get("/", function(req, res) {
 
-  db.Burger.findAll({
-    attributes: ["id", "name", "eaten"],
-    raw: true
-  })
-  .then(function(dbBurger) {
+app.use("/", basehtml);
+app.use("/api", apiroutes);
 
-    const hamburgers = {
-      hamburger: dbBurger
-    }
-    console.log(hamburgers);
-    
-    res.render("index", hamburgers);
-  });
-
-});
-
-// Connects to database and starts the server
+// Connects to database then starts the server
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
 db.sequelize.sync({ force: true }).then(function() {

@@ -37,24 +37,8 @@ app.use("/api", apiroutes);
 // Connects to database then starts the server
 // ---------------------------------------------------------------------------
 // ---------------------------------------------------------------------------
-db.sequelize.sync({ force: true }).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
-
-  db.Burger.create({
-    name: "Burger 1",
-    eaten: false
-  });
-  
-  db.Burger.create({
-    name: "Burger 2",
-    eaten: false
-  });
-  
-  db.Burger.create({
-    name: "Burger 3",
-    eaten: true
-  });
-
 });

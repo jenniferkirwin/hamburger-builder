@@ -13,8 +13,10 @@ $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
 $gray-color: lighten(#999, 10%);
-$gray-color-light: lighten(#999, 30%);
+$gray-color-light: #F8F8F8;
 $white-color: #ffffff;
+
+$primary-shadow: inset 0 0 10px rgba(0,0,0,0.45); 
 
 body {
     display: flex;
@@ -26,6 +28,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $secondary-font;  
+  font-weight: normal;
 }
 
 main {
@@ -33,10 +36,56 @@ main {
 }
 
 .my-nav {
-  background-color: $primary-color;
-  font-family: $secondary-font;
-  font-size: 26px;
+  background-color: $white-color;
+
+  .brand-logo {
+
+    color: $secondary-color;
+
+    font-family: $secondary-font;
+
+    img {
+      max-height: 35px;
+      padding-right: 15px;
+    }
+
+  }
+
+  @media screen and (min-width: 992px) {
+
+    
+    height: 105px;
+
+    .brand-logo {
+
+      padding-top: 15px;
+      font-size: 42px;
+      color: $secondary-color;
+        
+      img {
+        max-height: 45px;
+      }
+        
+    }
+  }
+}
+
+.my-header {
+  background-image: url("../images/burger_background.png");
+  /* Background vector created by freepik - www.freepik.com */  
+  background-repeat: repeat;
   color: $white-color;
+  box-shadow: $primary-shadow; 
+
+  input {
+    font-weight: bold;
+  }
+
+  .input-field input[type=text]:focus {
+    border-bottom: 1px solid $white-color;
+    box-shadow: 0 1px 0 0 $white-color;
+  }
+
 }
 
 .btn {
@@ -44,22 +93,23 @@ main {
   font-family: $primary-font;
 }
 
+.btn-delete {
+  background-color: #000000;
+}
+
 footer, .page-footer {
-  border-top: 1px solid $gray-color;
-  background-color: $white-color;
-}
-
-[contenteditable=true]:empty:before{
-  content: attr(data-placeholder);
-  pointer-events: none;
-  display: block; /* For Firefox */
-}
-
-[contenteditable]:focus {
-  background: #efefef;
-  outline: 2px solid $gray-color-light;
+  min-height: 45px;
+  background-image: url("../images/burger_background.png");
+  /* Background vector created by freepik - www.freepik.com */
+  background-repeat: repeat; 
+  box-shadow: $primary-shadow;
 }
 
 td {
   padding: 15px;
+}
+
+table {
+  border: 1px solid $gray-color-light;
+  border-radius: 5px;
 }
